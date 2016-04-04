@@ -49,6 +49,11 @@ env BUILDING_FROM_RPMBUILD=yes make install DESTDIR=%{buildroot}
 %__install -D -m 444 loolwsd.service %{buildroot}%{_unitdir}/loolwsd.service
 install -d -m 755 %{buildroot}/var/adm/fillup-templates
 install -D -m 644 sysconfig.loolwsd %{buildroot}/var/adm/fillup-templates
+mkdir -p %{buildroot}/etc/loolwsd
+install -D -m 644 loolwsd.xml %{buildroot}/etc/loolwsd
+install -D -m 644 etc/cert.pem %{buildroot}/etc/loolwsd
+install -D -m 644 etc/key.pem %{buildroot}/etc/loolwsd
+install -D -m 644 etc/CollaboraCloudSuiteCA_ca-chain.cert.pem %{buildroot}/etc/loolwsd
 mkdir -p %{buildroot}/etc/cron.d
 echo "#Remove old tiles once every 10 days at midnight" > %{buildroot}/etc/cron.d/loolwsd.cron
 echo "0 0 */1 * * root find /var/cache/loolwsd -name \"*.png\" -a -atime +10 -exec rm {} \;" >> %{buildroot}/etc/cron.d/loolwsd.cron
@@ -63,6 +68,7 @@ echo "0 0 */1 * * root find /var/cache/loolwsd -name \"*.png\" -a -atime +10 -ex
 %{_unitdir}/loolwsd.service
 /var/adm/fillup-templates/sysconfig.loolwsd
 /etc/cron.d/loolwsd.cron
+/etc/loolwsd
 
 %doc README
 

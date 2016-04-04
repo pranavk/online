@@ -83,8 +83,13 @@ noinst_HEADERS = Admin.hpp \
                  bundled/include/LibreOfficeKit/LibreOfficeKitTypes.h
 
 EXTRA_DIST = discovery.xml \
+             loolwsd.xml \
              loolwsd.service \
-             sysconfig.loolwsd
+             sysconfig.loolwsd \
+             etc/cert.pem \
+             etc/key.pem \
+             etc/CollaboraCloudSuiteCA_ca-chain.cert.pem
+
 
 clean-cache:
 # Intentionally don't use "*" below... Avoid risk of accidentally running rm -rf /*
